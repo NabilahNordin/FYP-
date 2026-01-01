@@ -33,11 +33,11 @@ class AdminPanelProvider extends PanelProvider
             ->spa()
             ->login(Login::class)
             ->sidebarCollapsibleOnDesktop()
-            ->brandLogo(asset('assets/logo.jpg'))
+            ->brandLogo(asset('assets/logo2.png'))
             ->brandLogoHeight('3rem')
             ->favicon(asset('assets/logo.jpg'))
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
             ])
             ->renderHook(
                 PanelsRenderHook::HEAD_START,

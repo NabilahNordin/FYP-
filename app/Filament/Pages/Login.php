@@ -4,10 +4,12 @@ namespace App\Filament\Pages;
 
 use App\Models\User;
 use Filament\Pages\Page;
+use Filament\Actions\Action;
 use Filament\Schemas\Schema;
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Filament\Schemas\Components\Group;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Auth\Pages\Login as OriLogin;
@@ -19,23 +21,90 @@ use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 class Login extends OriLogin
 {
     protected string $view = 'filament.pages.login';
-    //  protected string $view = 'filament-panels::pages.simple';
+    protected static string $layout = 'filament-panels::components.layout.base';
+    public $typelogin;
+
+    public function mount(): void
+    {
+        if (Filament::auth()->check()) {
+            redirect()->intended(Filament::getUrl());
+        }
+
+        $this->typelogin = 'student';
+
+        $this->form->fill();
+    }
+
+    protected function getFormActions(): array
+    {
+        if (in_array($this->typelogin, ['student', 'admin'])) {
+            return [
+                $this->getAuthenticateFormAction(),
+            ];
+        } else {
+            return [
+                $this->get2faFormAction(),
+            ];
+        }
+    }
+
+    protected function get2faFormAction(): Action
+    {
+        return Action::make('2fa')
+            ->label('Continue to 2FA')
+            ->action(function($livewire){
+                $livewire->redirect(Login2faPage::getUrl());
+            });
+    }
+
+    function loginAs($typelogin = null)
+    {
+        $this->typelogin = $typelogin;
+    }
 
 
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
-                $this->getUsernameFormComponent(),
-                $this->getPasswordFormComponent(),
-                $this->getRememberFormComponent(),
+                $this->getUsernameFormComponent()
+                    ->visible(fn() => in_array($this->typelogin, ['student', 'admin', 'next-kin'])),
+                $this->getNextkinFormComponent()
+                    ->visible(fn() => $this->typelogin == 'next-kin'),
+                $this->getPasswordFormComponent()
+                    ->visible(fn() => in_array($this->typelogin, ['student', 'admin'])),
+                $this->getRememberFormComponent()
+                    ->visible(fn() => in_array($this->typelogin, ['student', 'admin'])),
+            ]);
+    }
+
+
+    protected function getNextkinFormComponent(): Component
+    {
+        return Group::make()
+            ->schema([
+                TextInput::make('fullname')
+                    ->label('Your Full Name')
+                    ->required()
+                    ->extraInputAttributes(['tabindex' => 1]),
+
+                TextInput::make('relationship')
+                    ->label('Relationship to Student')
+                    ->required()
+                    ->extraInputAttributes(['tabindex' => 1]),
+                TextInput::make('phonenumber')
+                    ->label('Contact Phone Number')
+                    ->required()
+                    ->extraInputAttributes(['tabindex' => 1])
+
+
             ]);
     }
 
     protected function getUsernameFormComponent(): Component
     {
         return TextInput::make('username')
-            ->label(__('Username'))
+            ->label(fn() => $this->typelogin == 'student' ? 'Student/Staff ID or Email' : ($this->typelogin == 'admin' ? 'Student/Staff ID or Email' : ($this->typelogin == 'next-kin' ? 'Student ID' : __('Username'))))
             ->required()
             ->autofocus()
             ->extraInputAttributes(['tabindex' => 1]);
