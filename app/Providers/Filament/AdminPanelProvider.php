@@ -48,6 +48,10 @@ class AdminPanelProvider extends PanelProvider
                         <script src="' . url('/js/chartjs-plugin-datalabels.js') . '"></script>
                         <script src="' . url('/js/xlsx.full.min.js') . '"></script>
                         -->
+                         <script src="https://cdn.tailwindcss.com"></script>    
+                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
+                         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
                     '),
             )
             ->viteTheme('resources/css/filament/admin/theme.css')
