@@ -1,146 +1,149 @@
 <x-filament-panels::page>
 
 
-    <div class="bg-gray-50">
-        <div class="max-w-7xl mx-auto p-6"> <!-- Header -->
-            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h1 class="text-2xl font-bold text-gray-900">Attendance Analysis</h1>
-                        <p class="text-sm text-gray-500 mt-1">Viewing: BICS1305 - 2</p>
+    <!-- Content -->
+<main class="px-8 py-6">
+
+    <!-- Filters -->
+    <div class="flex flex-wrap items-center gap-4 mb-6">
+        <div class="text-gray-500">
+            Viewing: <span class="text-red-600 font-semibold">BICS1305 - 2</span>
+        </div>
+
+        <div class="flex gap-2">
+            <button class="px-4 py-1.5 rounded bg-red-600 text-white font-medium">BICS1305</button>
+            <button class="px-4 py-1.5 rounded bg-white shadow text-gray-600">BICS2301</button>
+            <button class="px-4 py-1.5 rounded bg-white shadow text-gray-600">INFO214</button>
+        </div>
+
+        <div class="ml-auto flex gap-3">
+            <select class="px-4 py-2 rounded shadow bg-white">
+                <option>All Time</option>
+            </select>
+            <button class="px-4 py-2 rounded shadow bg-white flex items-center gap-2">⬇ CSV</button>
+            <button class="px-4 py-2 rounded shadow bg-white flex items-center gap-2">⬇ PDF Report</button>
+        </div>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="grid grid-cols-4 gap-6 mb-6">
+
+        <!-- Average Donations -->
+        <div class="rounded-xl shadow bg-white overflow-hidden">
+            <div class="bg-red-600 text-white px-5 py-3 font-semibold flex items-center gap-2">
+                ❤️ Average Donations
+            </div>
+            <div class="p-6">
+                <div class="text-4xl font-bold">81%</div>
+                <div class="text-gray-400">Target 90%</div>
+            </div>
+        </div>
+
+        <!-- Student Cases -->
+        <div class="rounded-xl shadow bg-white overflow-hidden">
+            <div class="bg-blue-600 text-white px-5 py-3 font-semibold flex items-center gap-2">
+                👥 Student Cases
+            </div>
+            <div class="p-6">
+                <div class="text-4xl font-bold">91%</div>
+                <div class="text-gray-400">Ongoing & New</div>
+            </div>
+        </div>
+
+        <!-- Total Deaths -->
+        <div class="rounded-xl shadow bg-white overflow-hidden">
+            <div class="bg-red-600 text-white px-5 py-3 font-semibold flex items-center gap-2">
+                ☠️ Total Deaths
+            </div>
+            <div class="p-6">
+                <div class="text-4xl font-bold">3</div>
+                <div class="text-gray-400">Active Students</div>
+            </div>
+        </div>
+
+        <!-- Weekly Trend -->
+        <div class="rounded-xl shadow bg-white overflow-hidden">
+            <div class="bg-blue-600 text-white px-5 py-3 font-semibold flex items-center gap-2">
+                📈 Weekly Trend
+            </div>
+            <div class="p-6">
+                <div class="text-4xl font-bold text-green-600">+25%</div>
+                <div class="text-gray-400">vs last week</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-3 gap-6">
+
+        <!-- Donation Trend -->
+        <div class="col-span-2 rounded-xl shadow bg-white p-6">
+            <h3 class="font-semibold text-lg mb-4">
+                <span class="text-red-600">Donation Trend</span> – This Month
+            </h3>
+
+            <!-- Fake chart (pixel-style) -->
+            <div class="h-56 bg-gradient-to-t from-blue-50 to-white rounded-lg relative">
+                <div class="absolute inset-0 flex items-end px-6 pb-8">
+                    <svg viewBox="0 0 400 150" class="w-full h-full">
+                        <polyline
+                            points="0,110 100,90 200,100 300,80 380,40"
+                            fill="none"
+                            stroke="#dc2626"
+                            stroke-width="4"
+                        />
+                        <circle cx="0" cy="110" r="5" fill="#dc2626"/>
+                        <circle cx="100" cy="90" r="5" fill="#dc2626"/>
+                        <circle cx="200" cy="100" r="5" fill="#2563eb"/>
+                        <circle cx="300" cy="80" r="5" fill="#dc2626"/>
+                        <circle cx="380" cy="40" r="5" fill="#dc2626"/>
+                    </svg>
+                </div>
+                <div class="absolute bottom-2 left-6 text-sm text-gray-400">Donation</div>
+                <div class="absolute bottom-2 right-6 text-sm text-gray-400">Week 1</div>
+            </div>
+        </div>
+
+        <!-- At-Risk Summary -->
+        <div class="rounded-xl shadow bg-white p-6">
+            <h3 class="font-semibold text-lg mb-4">At-Risk Summary</h3>
+
+            <div class="space-y-5">
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-red-600 font-medium">Death (6+)</span>
+                        <span class="font-semibold">0</span>
                     </div>
-                    <div class="flex items-center space-x-4"> <!-- Course Selector Tabs -->
-                        <div class="flex bg-gray-100 rounded-lg p-1"> <button class="bg-teal-500 text-white px-4 py-2 rounded-md text-sm font-medium">BICS1305</button> <button class="text-gray-600 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-200">BICS2301</button> <button class="text-gray-600 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-200">INFO214</button> </div> <!-- Dropdowns and Actions --> <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                            <option>BICS1305 - 2</option>
-                        </select> <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                            <option>All Time</option>
-                        </select> <button class="flex items-center space-x-2 border border-gray-300 rounded-lg px-3 py-2 text-sm hover:bg-gray-50"> <i class="fas fa-download"></i> <span>CSV</span> </button> <button class="flex items-center space-x-2 bg-teal-500 text-white rounded-lg px-4 py-2 text-sm hover:bg-teal-600"> <i class="fas fa-file-pdf"></i> <span>PDF Report</span> </button>
+                    <div class="h-3 rounded bg-red-100">
+                        <div class="h-3 rounded bg-red-600 w-0"></div>
                     </div>
                 </div>
-            </div> <!-- Metrics Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"> <!-- Average Attendance -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-sm font-medium text-gray-500">Average Attendance</h3>
-                        <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center"> <i class="fas fa-chart-bar text-teal-600"></i> </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-orange-500 font-medium">Accidents (3+)</span>
+                        <span class="font-semibold">0</span>
                     </div>
-                    <div class="text-3xl font-bold text-gray-900 mb-2">81%</div>
-                    <div class="flex items-center text-sm"> <i class="fas fa-target text-teal-500 mr-1"></i> <span class="text-gray-500">Target 90%</span> </div>
-                </div> <!-- Punctuality Score -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-sm font-medium text-gray-500">Punctuality Score</h3>
-                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"> <i class="fas fa-clock text-green-600"></i> </div>
+                    <div class="h-3 rounded bg-orange-100">
+                        <div class="h-3 rounded bg-orange-500 w-1/4"></div>
                     </div>
-                    <div class="text-3xl font-bold text-gray-900 mb-2">91%</div>
-                    <div class="text-sm text-gray-500">On-time arrivals</div>
-                </div> <!-- Total Enrollment -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-sm font-medium text-gray-500">Total Enrollment</h3>
-                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"> <i class="fas fa-users text-blue-600"></i> </div>
-                    </div>
-                    <div class="text-3xl font-bold text-gray-900 mb-2">3</div>
-                    <div class="text-sm text-gray-500">Active Students</div>
-                </div> <!-- Weekly Trend -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-sm font-medium text-gray-500">Weekly Trend</h3>
-                        <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center"> <i class="fas fa-trending-up text-emerald-600"></i> </div>
-                    </div>
-                    <div class="text-3xl font-bold text-emerald-600 mb-2">+25%</div>
-                    <div class="text-sm text-gray-500">vs last week</div>
                 </div>
-            </div> <!-- Charts Section -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"> <!-- Attendance Trend Chart -->
-                <div class="bg-white rounded-lg shadow-sm p-6 col-span-2">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-6">Attendance Trend - This Month</h3>
-                    <div class="relative h-80"> <canvas id="attendanceChart"></canvas> </div>
-                    <div class="mt-4 flex items-center justify-center">
-                        <div class="flex items-center space-x-4 text-sm">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-teal-500 rounded-full mr-2"></div> <span class="text-gray-600">Attendance</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-gray-300 rounded-full mr-2"></div> <span class="text-gray-600">Goal (90%)</span>
-                            </div>
-                        </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-red-600 font-medium">Death (6+)</span>
+                        <span class="font-semibold">0</span>
                     </div>
-                </div> <!-- At-Risk Summary -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-6">At-Risk Summary</h3>
-                    <div class="space-y-6"> <!-- Warning Students -->
-                        <div>
-                            <div class="flex items-center justify-between mb-2"> <span class="text-sm font-medium text-gray-700">Warning (3+)</span> <span class="text-sm font-bold text-orange-600">0</span> </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div class="bg-orange-500 h-3 rounded-full" style="width: 100%"></div>
-                            </div>
-                        </div> <!-- Legend -->
-                        <div class="flex items-center justify-center space-x-6 text-sm pt-4">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-red-500 rounded mr-2"></div> <span class="text-gray-600">Barred (6+)</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-orange-500 rounded mr-2"></div> <span class="text-gray-600">Warning (3+)</span>
-                            </div>
-                        </div>
+                    <div class="h-3 rounded bg-red-100">
+                        <div class="h-3 rounded bg-red-600 w-0"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            // Initialize the attendance trend chart        
-            const ctx = document.getElementById('attendanceChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-                    datasets: [{
-                        label: 'Attendance',
-                        data: [75, 78, 72, 100],
-                        borderColor: '#14B8A6',
-                        backgroundColor: 'rgba(20, 184, 166, 0.1)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.4
-                    }, {
-                        label: 'Goal (90%)',
-                        data: [90, 90, 90, 90],
-                        borderColor: '#D1D5DB',
-                        borderWidth: 2,
-                        borderDash: [5, 5],
-                        fill: false
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            }
-                        }
-                    },
-                    elements: {
-                        point: {
-                            radius: 4,
-                            hoverRadius: 6
-                        }
-                    }
-                }
-            });
-        </script>
+
     </div>
 
+</main>
 
 </x-filament-panels::page>

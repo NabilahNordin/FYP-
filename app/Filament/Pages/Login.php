@@ -37,15 +37,22 @@ class Login extends OriLogin
 
     protected function getFormActions(): array
     {
-        if (in_array($this->typelogin, ['student', 'admin'])) {
-            return [
-                $this->getAuthenticateFormAction(),
+              return [
+                $this->getAuthenticateFormAction()
+                ->visible(fn()=> in_array($this->typelogin, ['student', 'admin'])),
+                $this->get2faFormAction()
+                  ->visible(fn()=> in_array($this->typelogin, ['next-kin'])),
             ];
-        } else {
-            return [
-                $this->get2faFormAction(),
-            ];
-        }
+
+        // if (in_array($this->typelogin, ['student', 'admin'])) {
+        //     return [
+        //         $this->getAuthenticateFormAction(),
+        //     ];
+        // } else {
+        //     return [
+        //         $this->get2faFormAction(),
+        //     ];
+        // }
     }
 
     protected function get2faFormAction(): Action

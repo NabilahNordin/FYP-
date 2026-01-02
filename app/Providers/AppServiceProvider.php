@@ -5,12 +5,13 @@ namespace App\Providers;
 use Livewire\Livewire;
 use Illuminate\Auth\Events\Logout;
 use Filament\View\PanelsRenderHook;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Filament\Support\Facades\FilamentView;
 
+use Filament\Support\Facades\FilamentView;
 use Filament\Auth\Http\Responses\Contracts\LoginResponse as LoginResponseContract;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,8 +37,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
          if($this->app->environment('production')) {
-            // URL::forceScheme('https');
-            $this->app['request']->server->set('HTTPS', true);
+            URL::forceScheme('https');
+            // $this->app['request']->server->set('HTTPS', true);
         }
 
          // Get the base URL
