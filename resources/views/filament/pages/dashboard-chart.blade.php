@@ -84,25 +84,18 @@
             </h3>
 
             <!-- Fake chart (pixel-style) -->
-            <div class="h-56 bg-gradient-to-t from-blue-50 to-white rounded-lg relative">
-                <div class="absolute inset-0 flex items-end px-6 pb-8">
-                    <svg viewBox="0 0 400 150" class="w-full h-full">
-                        <polyline
-                            points="0,110 100,90 200,100 300,80 380,40"
-                            fill="none"
-                            stroke="#dc2626"
-                            stroke-width="4"
-                        />
-                        <circle cx="0" cy="110" r="5" fill="#dc2626"/>
-                        <circle cx="100" cy="90" r="5" fill="#dc2626"/>
-                        <circle cx="200" cy="100" r="5" fill="#2563eb"/>
-                        <circle cx="300" cy="80" r="5" fill="#dc2626"/>
-                        <circle cx="380" cy="40" r="5" fill="#dc2626"/>
-                    </svg>
-                </div>
-                <div class="absolute bottom-2 left-6 text-sm text-gray-400">Donation</div>
-                <div class="absolute bottom-2 right-6 text-sm text-gray-400">Week 1</div>
-            </div>
+           
+                    <div class="relative h-80"> <canvas id="attendanceChart"></canvas> </div>
+                    <div class="mt-4 flex items-center justify-center">
+                        <div class="flex items-center space-x-4 text-sm">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-teal-500 rounded-full mr-2"></div> <span class="text-gray-600">Attendance</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-gray-300 rounded-full mr-2"></div> <span class="text-gray-600">Goal (90%)</span>
+                            </div>
+                        </div>
+                    </div>
         </div>
 
         <!-- At-Risk Summary -->
@@ -143,6 +136,58 @@
         </div>
 
     </div>
+     <script>
+            // Initialize the attendance trend chart        
+            const ctx = document.getElementById('attendanceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Attendance',
+                        data: [75, 78, 72, 100],
+                        borderColor: 'red',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Goal (90%)',
+                        data: [90, 90, 90, 90],
+                        borderColor: 'blue',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    elements: {
+                        point: {
+                            radius: 4,
+                            hoverRadius: 6
+                        }
+                    }
+                }
+            });
+        </script>
 
 </main>
 
