@@ -28,9 +28,9 @@ class Login2faPage extends Page
 
     function verify2fa()
     {
-        $user = User::first();
+        $user = User::role('kin')->first();
         Auth::login($user);
 
-        return redirect(url('/admin'));
+        return redirect(url('/admin/kin-dashboard'));
     }
 }

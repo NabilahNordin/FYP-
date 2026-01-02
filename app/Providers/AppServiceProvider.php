@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Filament\Support\Facades\FilamentView;
 
+use Filament\Auth\Http\Responses\Contracts\LoginResponse as LoginResponseContract;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
             // fn () => view('customFooter'),
             fn() => Blade::render('@livewire(\App\Filament\Pages\Footer::class)')
         );
+
+        $this->app->bind(LoginResponseContract::class, \App\Http\Responses\LoginResponse::class);
     }
 
     /**

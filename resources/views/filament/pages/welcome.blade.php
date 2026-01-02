@@ -1,5 +1,5 @@
 <div class="bg-gray-50 text-gray-800">
-    
+
     <!-- HEADER -->
     <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -159,11 +159,9 @@
                     </div>
 
                     <!-- Button -->
-                    <button
-                        class="mt-4 w-full bg-gradient-to-r from-black to-gray-800 text-white py-4 rounded-xl
-                   flex items-center justify-center gap-3 text-lg font-medium hover:opacity-90 transition">
-                        ♡ Donate Now →
-                    </button>
+                   
+                        {{ ($this->donatenowAction)(['post' => 1]) }}
+                   
                 </div>
 
                 <!-- CARD 2 -->
@@ -219,14 +217,12 @@
                     </div>
 
                     <!-- Button -->
-                    <button
-                        class="mt-4 w-full bg-gradient-to-r from-black to-gray-800 text-white py-4 rounded-xl
-                   flex items-center justify-center gap-3 text-lg font-medium hover:opacity-90 transition">
-                        ♡ Donate Now →
-                    </button>
+                       <!-- Button -->
+                   
+                        {{ ($this->donatenowAction)(['post' => 2]) }}
                 </div>
 
-                   <!-- CARD 1 -->
+                <!-- CARD 1 -->
                 <div class="bg-white rounded-3xl border p-8 flex flex-col gap-6">
 
                     <!-- Badges -->
@@ -279,11 +275,9 @@
                     </div>
 
                     <!-- Button -->
-                    <button
-                        class="mt-4 w-full bg-gradient-to-r from-black to-gray-800 text-white py-4 rounded-xl
-                   flex items-center justify-center gap-3 text-lg font-medium hover:opacity-90 transition">
-                        ♡ Donate Now →
-                    </button>
+                       <!-- Button -->
+                   
+                        {{ ($this->donatenowAction)(['post' => 3]) }}
                 </div>
 
                 <!-- CARD 2 -->
@@ -339,11 +333,9 @@
                     </div>
 
                     <!-- Button -->
-                    <button
-                        class="mt-4 w-full bg-gradient-to-r from-black to-gray-800 text-white py-4 rounded-xl
-                   flex items-center justify-center gap-3 text-lg font-medium hover:opacity-90 transition">
-                        ♡ Donate Now →
-                    </button>
+                       <!-- Button -->
+                   
+                        {{ ($this->donatenowAction)(['post' => 4]) }}
                 </div>
 
             </div>
@@ -352,4 +344,5 @@
 
 
     </section>
+      <x-filament-actions::modals />
 </div>

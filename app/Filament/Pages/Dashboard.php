@@ -13,4 +13,9 @@ class Dashboard extends Page
     {
         return __('');
     }
+
+      public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()?->hasRole(['student']);
+    }
 }

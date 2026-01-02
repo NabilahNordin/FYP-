@@ -5,9 +5,9 @@ namespace App\Filament\Pages;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 
-class DashboardChart extends Page
+class AdminDashboard extends Page
 {
-    protected string $view = 'filament.pages.dashboard-chart';
+    protected string $view = 'filament.pages.admin-dashboard';
 
       public function getTitle(): string | Htmlable
     {
@@ -16,6 +16,6 @@ class DashboardChart extends Page
 
       public static function shouldRegisterNavigation(): bool
     {
-        return auth()->user()?->hasRole(['student']);
+        return auth()->user()?->hasRole(['admin']);
     }
 }
