@@ -89,7 +89,7 @@
                     <div class="mt-4 flex items-center justify-center">
                         <div class="flex items-center space-x-4 text-sm">
                             <div class="flex items-center">
-                                <div class="w-3 h-3 bg-teal-500 rounded-full mr-2"></div> <span class="text-gray-600">Attendance</span>
+                                <div class="w-3 h-3 bg-teal-500 rounded-full mr-2"></div> <span class="text-gray-600">Donation</span>
                             </div>
                             <div class="flex items-center">
                                 <div class="w-3 h-3 bg-gray-300 rounded-full mr-2"></div> <span class="text-gray-600">Goal (90%)</span>
